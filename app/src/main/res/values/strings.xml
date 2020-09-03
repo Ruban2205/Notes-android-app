@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="add_note">Add note</string>
+    <string name="about_us">About</string>
+    <string name="share">Share</string>
+    <string name="feedback">Feedback</string>
+    <string name="privacyPolicy">Privacy policy &amp; terms</string>
+</resources>
