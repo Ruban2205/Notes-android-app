@@ -3,6 +3,18 @@
     <string name="add_note">Add note</string>
     <string name="about_us">About</string>
     <string name="share">Share</string>
+    <string name="rate_us">Rate</string>
     <string name="feedback">Feedback</string>
     <string name="privacyPolicy">Privacy policy &amp; terms</string>
+
+    <string name="splashTitle">NOTES</string>
+    <string name="splashSlogan">Write what is in your mind</string>
+
+    <string name="copyright">© Ruban Creations </string>
+
+    <string name="hint">Write what is in your mind :)</string>
+
+<!--    content description-->
+    <string name="fabContentDesc">Floating Action button</string>
+
 </resources>

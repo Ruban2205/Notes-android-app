@@ -7,8 +7,8 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/add_note"
-        android:icon="@drawable/add_note"
+        android:id="@+id/share"
+        android:icon="@drawable/share_icon"
         app:showAsAction="ifRoom"
         tools:ignore="MenuTitle"/>
 
@@ -20,13 +20,16 @@
         tools:ignore="MenuTitle" />
 
     <item
-        android:id="@+id/share"
-        android:title="@string/share"/>
+        android:id="@+id/about_us"
+        android:title="@string/about_us" />
+
+    <item
+        android:id="@+id/rate"
+        android:title="@string/rate_us" />
 
     <item
         android:id="@+id/feedback"
-        android:title="@string/feedback"
-        android:onClick="checkPermission"/>
+        android:title="@string/feedback" />
 
     <item
         android:onClick="privacyPolicy"

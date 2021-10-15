@@ -14,12 +14,11 @@
         android:layout_height="231dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="176dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:src="@mipmap/ic_launcher_foreground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,9 +28,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
-        android:text="NOTES"
-        android:textColor="@color/Black"
+        android:text="@string/splashTitle"
         android:textAlignment="center"
+        android:textColor="@color/Black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,7 +43,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
-        android:text="write what is in your mind "
+        android:text="@string/splashSlogan"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textColor="@color/Black"
@@ -57,12 +56,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="© Ruban Creations "
-        android:textSize="20sp"
+        android:fontFamily="cursive"
+        android:text="@string/copyright"
         android:textColor="@color/Black"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
