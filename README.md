@@ -2,6 +2,8 @@
 This is a NOTES app written with java in android This is the newer version of the app 
 version number 1.0.1
 
+[![Notes-Writing-Master](/notes-graphics.png)](https://play.google.com/store/apps/details?id=com.rubancreation.notes)
+
 =====================================================================================
 
 NOTES - writing master app 
