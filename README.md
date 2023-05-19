@@ -2,6 +2,7 @@
 
 [![Notes-Writing-Master](/notes-graphics.png)](https://play.google.com/store/apps/details?id=com.rubancreation.notes)
 
+
 This repository contains an Android application for taking and managing notes. The app provides a user-friendly interface and functionality to create, edit, and delete notes, as well as organize them into categories. This README file provides an overview of the application, installation instructions, and additional details for developers.
 
 ## Features ✨
