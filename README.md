@@ -4,7 +4,9 @@ version number 1.0.1
 
 [![Notes-Writing-Master](/notes-graphics.png)](https://play.google.com/store/apps/details?id=com.rubancreation.notes)
 
-=====================================================================================
+---
+
+---
 
 Developed by Ruban Gino Singh
 
