@@ -6,10 +6,6 @@ version number 1.0.1
 
 =====================================================================================
 
-NOTES - writing master app 
-is a fulfilled android app created and offered by ruban ceations. Users can use this app to writing a notes and storing someting they want
-Newer version of this app fixes major bugs and perfomance improvements, also added new four menu Items.
-
 Developed by Ruban Gino Singh
 
 ## Languages and Tools Used
