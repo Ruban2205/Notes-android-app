@@ -32,6 +32,14 @@ git clone https://github.com/Ruban2205/Notes-android-app.git
 3. Connect an Android device or use an Emulator. 
 4. Build and run the app using Android Studio. 
 
+## Usage 📱
+Once the Notes Android App is installed and running on an Android device, users can perform the following actions: 
+
+- Create a new note by tapping the "+" button and providing a title and content for the note. 
+- Edit an existing note by selecting it from the list and making the desired changes. 
+- Delete a note by holding the note for two seconds and confirming the deletion. 
+- Organize notes into categories by assigning a category to each note. 
+
 ## Languages and Tools Used
 
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://github.com/Ruban2205/Notes-android-app)
@@ -42,6 +50,8 @@ git clone https://github.com/Ruban2205/Notes-android-app.git
 ## Download Now 
 
 Google Play Download Link: https://play.google.com/store/apps/details?id=com.rubancreation.notes
+
+Usage
 
 
 ## Contact
