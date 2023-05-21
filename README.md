@@ -33,12 +33,27 @@ git clone https://github.com/Ruban2205/Notes-android-app.git
 4. Build and run the app using Android Studio. 
 
 ## Usage 📱
+
 Once the Notes Android App is installed and running on an Android device, users can perform the following actions: 
 
 - Create a new note by tapping the "+" button and providing a title and content for the note. 
 - Edit an existing note by selecting it from the list and making the desired changes. 
 - Delete a note by holding the note for two seconds and confirming the deletion. 
 - Organize notes into categories by assigning a category to each note. 
+
+## Contributing 🤝 
+
+Contributions to the Notes Android App are welcome and encouraged. If you wish to contribute, please follow these steps: 
+
+1. Fork the repository
+2. Create a new branch for your feature or bug fix. 
+3. Make your changes and ensure that the app is still functioning correctly. 
+4. Commit and push your changes to your forked repository. 
+5. Submit a pull request, clearly describing the changes you have made. 
+
+Please ensure that your contributions adhere to the code standards, follow best practices, and include appropriate documentation. 
+
+
 
 ## Languages and Tools Used
 
