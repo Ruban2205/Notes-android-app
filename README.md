@@ -20,6 +20,18 @@ The Notes Android App offers the following features:
 This is a NOTES app written with java in android This is the newer version of the app 
 version number 1.0.1
 
+## Installation 🚀
+
+To install and run the Notes Android App, follow these steps: 
+
+1. Clone the repository using the following command: 
+```
+git clone https://github.com/Ruban2205/Notes-android-app.git
+```
+2. Open the project in Android Studio 
+3. Connect an Android device or use an Emulator. 
+4. Build and run the app using Android Studio. 
+
 ## Languages and Tools Used
 
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://github.com/Ruban2205/Notes-android-app)
