@@ -20,6 +20,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     static ArrayList<String> notes = new ArrayList<>();
     static ArrayAdapter<String> arrayAdapter;
     ListView listView;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,21 +49,30 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.add_note) {
-            Intent intent = new Intent(getApplicationContext(), NoteEditorActivity.class);
-            startActivity(intent);
+        if (item.getItemId() == R.id.share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey!! Want to take notes? Try this amazing app now. Link: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+            sendIntent.setType("text/plain");
 
-            Toast.makeText(getApplicationContext(), "Hey! New Note is Created, Tap the screen to edit.", Toast.LENGTH_LONG).show();
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
 
             return true;
         }
 
-        else if (item.getItemId() == R.id.share){
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Text");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject");
-            startActivity(Intent.createChooser(sharingIntent, "Share using"));
+        else if (item.getItemId() == R.id.rate){
+            Toast.makeText(this, "Please wait", Toast.LENGTH_LONG).show();
+
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)));
+
+            return true;
+        }
+
+        else if (item.getItemId() == R.id.about_us){
+            aboutDialog();
+
+            return true;
         }
 
         return false;
@@ -74,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listView);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.rubancreation.notes", Context.MODE_PRIVATE);
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
@@ -84,10 +97,11 @@ public class MainActivity extends AppCompatActivity {
         else {
             notes = new ArrayList(set);
         }
-
+        
 
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, notes);
         listView.setAdapter(arrayAdapter);
+        listView.setDividerHeight(2);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -96,8 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), NoteEditorActivity.class);
                 intent.putExtra("noteId", i);
                 startActivity(intent);
-
-
             }
 
         });
@@ -139,10 +151,26 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), NoteEditorActivity.class);
+                startActivity(intent);
+
+                Toast.makeText(getApplicationContext(), "Hey! New Note is Created, Tap the screen to edit.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        boolean firstStart = preferences.getBoolean("firstStart", true);
+        if (firstStart) {
+            showStartDialog();
+        }
     }
 
     //for Exit menu Item
-    public void exit(MenuItem item) {
+    public void exit(MenuItem item){
+        Toast.makeText(this, "Thanks for using NOTES", Toast.LENGTH_LONG).show();
         finish();
     }
 
@@ -154,29 +182,23 @@ public class MainActivity extends AppCompatActivity {
             public void onPermissionGranted() {
                 Toast.makeText(MainActivity.this, "Please wait..", Toast.LENGTH_SHORT).show();
 
-                Log.d("  ", "send email: ");
+               Log.d(" ", "Send Email: ");
+               String[] TO_EMAILS = {"app.feedback.rubancreations@gmail.com"};
 
-                String[] TO_EMAILS = {"rubancreations22@gmail.com"};
-                //these CC and BCC
-                String[] CC = {"rubancreations22@gmail.com"};
-                String[] BCC = {"rubancreations22@gmail.com"};
+               Intent intent = new Intent(Intent.ACTION_SENDTO);
+               intent.setData(Uri.parse("mailto:"));
+               intent.putExtra(Intent.EXTRA_EMAIL, TO_EMAILS);
 
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:"));
-                intent.putExtra(Intent.EXTRA_EMAIL, TO_EMAILS);
-                intent.putExtra(Intent.EXTRA_CC, CC);
-                intent.putExtra(Intent.EXTRA_BCC, BCC);
+               intent.putExtra(Intent.EXTRA_SUBJECT, "Reported Problem");
+               intent.putExtra(Intent.EXTRA_TEXT, "Hey Ruban Creations I've found a Bug/Problem inside your app. \nProblem Explanation: \n");
 
-                intent.putExtra(Intent.EXTRA_SUBJECT, "This is a Subject");
-                intent.putExtra(Intent.EXTRA_TEXT, "This is the body of the Email");
-
-                startActivity(Intent.createChooser(intent, "Choose your mail client.."));
+               startActivity(Intent.createChooser(intent, "Choose your mail client: "));
 
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                Toast.makeText(MainActivity.this, "Click allow to access Permission.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Check your internet connection.", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -202,12 +224,46 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Check Connection Settings", Toast.LENGTH_LONG).show();
             }
         };
-
-
-
         TedPermission.with(MainActivity.this)
                 .setPermissionListener(privacyPolicy)
                 .setPermissions(Manifest.permission.INTERNET)
                 .check();
+    }
+
+    private void showStartDialog(){
+        new AlertDialog.Builder(this)
+                .setTitle("We are Updated!")
+                .setMessage("Hello Buddies, We are updated our app This update includes \nBug Fixes \nFixed add button not working problem \nUpgraded performance \nAdded some menus to know about us \nRate us on google playstore :)")
+                .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create().show();
+
+        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
+    }
+
+    private void aboutDialog(){
+        new AlertDialog.Builder(this)
+                .setTitle("NOTES - Writing Master")
+                .setMessage("Hello users, NOTES - Writing Master." +
+                        "One of our first development on PlayStore has surpassed 500+ users around the world" +
+                        "Users can write notes in our app" +
+                        "An User friendly application. We designed everything, what they expected. " +
+                        "We made it more. \n" +
+                        "\n" +
+                        "Version Name: 1.3")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create().show();
     }
 }

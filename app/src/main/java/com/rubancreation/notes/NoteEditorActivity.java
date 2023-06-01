@@ -34,11 +34,13 @@ public class NoteEditorActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.share_menu){
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Text");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject");
-            startActivity(Intent.createChooser(sharingIntent, "Share using"));
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey!! Want to take notes? Try this amazing app now. Link: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
 
             return true;
         }
@@ -54,6 +56,9 @@ public class NoteEditorActivity extends AppCompatActivity {
 
         //enable back button to main activity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Setting the title
+        getSupportActionBar().setTitle("Write Here");
 
         //Implement menu Inflater
 
@@ -100,6 +105,7 @@ public class NoteEditorActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 }
